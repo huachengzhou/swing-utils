@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <cJdbcUrl>
+        <![CDATA[
+        jdbc:mysql://localhost:3306/tree?serverTimezone=UTC&characterEncoding=utf8&useUnicode=true&useSSL=false
+        ]]>
+    </cJdbcUrl>
+    <cUsername>root</cUsername>
+    <cPassword>123456</cPassword>
+    <cDriverClass>com.mysql.cj.jdbc.Driver</cDriverClass>
+    <cMinPoolSize>7</cMinPoolSize>
+    <cInitialPoolSize>7</cInitialPoolSize>
+    <cMaxPoolSize>20</cMaxPoolSize>
+    <cMaxIdleTime>1000</cMaxIdleTime>
+</root>
