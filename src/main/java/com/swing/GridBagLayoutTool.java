@@ -4,7 +4,7 @@ package com.swing;
 import java.awt.*;
 
 public class GridBagLayoutTool {
-
+    //   https://blog.csdn.net/wstz_5461/article/details/78067176
     /**
      * @param x       x轴坐标
      * @param y       y轴纵坐标
