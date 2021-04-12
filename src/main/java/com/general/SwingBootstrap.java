@@ -38,7 +38,7 @@ public class SwingBootstrap {
         RunAbs.removeJavaIconImageSwing(jf);
         Dimension dimension = new Dimension(1200, 1100);
         jf.setSize(dimension);
-        jf.setResizable(false);
+        jf.setResizable(true);
         jf.setLocationRelativeTo(null);
         jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

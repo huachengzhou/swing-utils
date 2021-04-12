@@ -61,14 +61,37 @@ public class PanelTool {
 
     private static MyEntry<JPanel, String> createCHECK_CONNECTED_NET(JPanel contentPane) {
         PanelEnum panelEnum = PanelEnum.CHECK_CONNECTED_NET;
-        SpringLayout layout = new SpringLayout();
-        JPanel jPanel = new JPanel(layout);
+        GridBagLayout gridBagLayout = new GridBagLayout();
+        JPanel jPanel = new JPanel(gridBagLayout);
         JButton button = new JButton(panelEnum.getName());
         JTextArea jTextArea = new JTextArea(2, 22);
-        layout.putConstraint(SpringLayout.EAST, jPanel, 280, SpringLayout.WEST, button);
-        layout.putConstraint(SpringLayout.NORTH, button, 350, SpringLayout.NORTH, jPanel);
-        layout.putConstraint(SpringLayout.WEST, button, 20, SpringLayout.EAST, jTextArea);
-        layout.putConstraint(SpringLayout.NORTH, jTextArea, 350, SpringLayout.NORTH, jPanel);
+
+        GridBagConstraints gridBagConstraints = new GridBagConstraints();//实例化这个对象用来对组件进行管理
+        gridBagConstraints.fill = GridBagConstraints.BOTH;//该方法是为了设置如果组件所在的区域比组件本身要大时的显示情况
+        //组件1(gridx,gridy)组件的左上角坐标，gridwidth，gridheight：组件占用的网格行数和列数
+        //坐标(6,2)
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 1;//占1行
+        gridBagConstraints.gridheight = 15;//占15列
+        gridBagConstraints.weightx = 0.1;//填充权重
+        gridBagConstraints.weighty = 0.1;//填充权重
+        gridBagConstraints.insets = new Insets(400, 50, 400, 50);//相当于html中margin top,left,bottom,right
+        gridBagConstraints.anchor = GridBagConstraints.CENTER;
+
+        gridBagLayout.setConstraints(jTextArea, gridBagConstraints);
+
+        //组件2
+        //坐标(6,2+6)  必须+6 不然在一个位置会有遮挡效应 如果设置了具体的宽度还需要 把组件2的宽度加上组件1的宽度
+        gridBagConstraints.gridx = 2 + 6;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 1;//占1行
+        gridBagConstraints.gridheight = 2;//占2列
+        gridBagConstraints.weightx = 0;//填充权重
+        gridBagConstraints.weighty = 0;//填充权重
+
+        gridBagLayout.setConstraints(button, gridBagConstraints);
+
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -80,7 +103,7 @@ public class PanelTool {
                     InetAddress address = InetAddress.getByName(jTextArea.getText());
                     jTextArea.setText("地址可以连接");
                 } catch (Exception eX) {
-                    jTextArea.setText(String.format("地址不可以连接原因:%s",eX.getMessage()));
+                    jTextArea.setText(String.format("地址不可以连接原因:%s", eX.getMessage()));
                 }
             }
         });
@@ -92,15 +115,41 @@ public class PanelTool {
 
     private static MyEntry<JPanel, String> createGet_current_ip(JPanel contentPane) {
         PanelEnum panelEnum = PanelEnum.Get_current_ip;
-        SpringLayout layout = new SpringLayout();
-        JPanel jPanel = new JPanel(layout);
+        GridBagLayout gridBagLayout = new GridBagLayout(); //实例化布局对象
+
+        JPanel jPanel = new JPanel(gridBagLayout);
+
         JButton button = new JButton(panelEnum.getName());
         JTextArea jTextArea = new JTextArea(2, 22);
         jTextArea.setEditable(false);
-        layout.putConstraint(SpringLayout.EAST, jPanel, 280, SpringLayout.WEST, button);
-        layout.putConstraint(SpringLayout.NORTH, button, 350, SpringLayout.NORTH, jPanel);
-        layout.putConstraint(SpringLayout.WEST, button, 20, SpringLayout.EAST, jTextArea);
-        layout.putConstraint(SpringLayout.NORTH, jTextArea, 350, SpringLayout.NORTH, jPanel);
+
+
+        GridBagConstraints gridBagConstraints = new GridBagConstraints();//实例化这个对象用来对组件进行管理
+        gridBagConstraints.fill = GridBagConstraints.BOTH;//该方法是为了设置如果组件所在的区域比组件本身要大时的显示情况
+        //组件1(gridx,gridy)组件的左上角坐标，gridwidth，gridheight：组件占用的网格行数和列数
+        //坐标(6,2)
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 1;//占1行
+        gridBagConstraints.gridheight = 15;//占15列
+        gridBagConstraints.weightx = 0.1;//填充权重
+        gridBagConstraints.weighty = 0.1;//填充权重
+        gridBagConstraints.insets = new Insets(400, 50, 400, 50);//相当于html中margin top,left,bottom,right
+        gridBagConstraints.anchor = GridBagConstraints.CENTER;
+
+        gridBagLayout.setConstraints(jTextArea, gridBagConstraints);
+
+        //组件2
+        //坐标(6,2+6)  必须+6 不然在一个位置会有遮挡效应 如果设置了具体的宽度还需要 把组件2的宽度加上组件1的宽度
+        gridBagConstraints.gridx = 2 + 6;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 1;//占1行
+        gridBagConstraints.gridheight = 1;//占2列
+        gridBagConstraints.weightx = 0;//填充权重
+        gridBagConstraints.weighty = 0;//填充权重
+
+        gridBagLayout.setConstraints(button, gridBagConstraints);
+
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
