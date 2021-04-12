@@ -2,6 +2,7 @@ package com.general.panel;
 
 import com.general.enums.PanelEnum;
 import com.google.common.base.CaseFormat;
+import com.swing.GridBagLayoutTool;
 import com.swing.JTextField;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -100,8 +101,8 @@ public class SoftwareEngineerPanelTool {
                 try {
                     String oldPath = field.getText();
                     String hugoPath = jTextField.getText();
-                    HandleGoHuGoFileAppend.run(oldPath,hugoPath);
-                    JOptionPane.showMessageDialog(jPanel,  " 转换成功!");
+                    HandleGoHuGoFileAppend.run(oldPath, hugoPath);
+                    JOptionPane.showMessageDialog(jPanel, " 转换成功!");
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(jPanel, "转换失败!" + ex.getMessage());
                 }
@@ -287,8 +288,8 @@ public class SoftwareEngineerPanelTool {
                     if (StringUtils.isNotBlank(jTextField3.getText())) {
                         title = jTextField3.getText();
                     }
-                    if (StringUtils.isBlank(title)){
-                        title = RandomStringUtils.randomNumeric(4) ;
+                    if (StringUtils.isBlank(title)) {
+                        title = RandomStringUtils.randomNumeric(4);
                     }
 
                     org.jsoup.select.Elements elements = document.select(jTextField2.getText());
@@ -390,11 +391,10 @@ public class SoftwareEngineerPanelTool {
     }
 
     private static JComponent makeTextPanel(JPanel contentPane) {
-        SpringLayout layout = new SpringLayout();
+        GridBagLayout layout = new GridBagLayout();
         JPanel jPanel = new JPanel(layout);
         Border border = BorderFactory.createBevelBorder(2, Color.white, Color.white);
         jPanel.setBorder(border);
-        Color foreColor = Color.darkGray;
         Font font = new Font("微软雅黑", Font.BOLD, 16);
         int row = 10, column = 50;
 
@@ -409,9 +409,6 @@ public class SoftwareEngineerPanelTool {
         body.add(buttonB);
         body.add(buttonC);
 
-//        com.seaglasslookandfeel.ui.SeaGlassButtonUI buttonUI = new com.seaglasslookandfeel.ui.SeaGlassButtonUI();
-//        buttonA.setUI(buttonUI);
-
 
         JTextArea output = new JTextArea(row, column);
         output.setFont(font);
@@ -421,19 +418,13 @@ public class SoftwareEngineerPanelTool {
         jPanel.add(body);
         jPanel.add(output);
 
-        int pad = -210;
-        final int y = 150;
+        final int y = 10;
 
-        layout.putConstraint(SpringLayout.EAST, input, pad, SpringLayout.EAST, jPanel);
-        layout.putConstraint(SpringLayout.NORTH, input, y, SpringLayout.NORTH, jPanel);
+        layout.setConstraints(input, GridBagLayoutTool.createGridBagConstraints(1, 5, 10, 4));//y=9
 
+        layout.setConstraints(body, GridBagLayoutTool.createGridBagConstraints(1, 9 + 4 + y, 5, 1,new Insets(1,70,1,70)));//y=15
 
-        layout.putConstraint(SpringLayout.EAST, body, pad - 215, SpringLayout.EAST, jPanel);
-        layout.putConstraint(SpringLayout.NORTH, body, y + 90, SpringLayout.NORTH, input);
-
-
-        layout.putConstraint(SpringLayout.EAST, output, pad, SpringLayout.EAST, jPanel);
-        layout.putConstraint(SpringLayout.NORTH, output, 40, SpringLayout.NORTH, body);
+        layout.setConstraints(output, GridBagLayoutTool.createGridBagConstraints(1, 15 + 4 + y, 10, 4));
 
 
         //-------------------------------------------/-----------------------------------------
