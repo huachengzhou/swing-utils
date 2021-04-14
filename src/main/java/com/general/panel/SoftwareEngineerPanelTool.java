@@ -11,6 +11,7 @@ import org.jsoup.nodes.Element;
 import tool.utils.CrawlerUtils;
 import tool.utils.HandleGoHuGoFileAppend;
 import tool.utils.MyEntry;
+import tool.utils.entity.Coordinates;
 import tool.utils.excel.ConvertHtml2Excel;
 import tool.utils.excel.JsoupConvertExcel;
 import tool.utils.word.aspose.AsposeUtils;
@@ -27,7 +28,9 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.function.Function;
 
 /**
@@ -150,15 +153,15 @@ public class SoftwareEngineerPanelTool {
     }
 
     private static JComponent makeTextPanelA(JPanel contentPane) {
-        SpringLayout layout = new SpringLayout();
+        GridBagLayout layout = new GridBagLayout();
         JPanel jPanel = new JPanel(layout);
         Border border = BorderFactory.createBevelBorder(2, Color.white, Color.white);
         jPanel.setBorder(border);
         Color foreColor = Color.darkGray;
         Font font = new Font("微软雅黑", Font.BOLD, 16);
         int row = 3, column = 50;
-
-        JPanel head = new JPanel();
+//        JPanel head = new JPanel(new GridLayout(1, 2, 0, 0));
+        JPanel head = new JPanel(new FlowLayout(FlowLayout.CENTER,0,0));
 
         JTextArea input = new JTextArea(row, column);
         input.setFont(font);
@@ -223,29 +226,65 @@ public class SoftwareEngineerPanelTool {
         JTextArea label = new JTextArea(40, 80);
         label.setText(remark);
         label.setEditable(false);
-//        label.setPreferredSize(new Dimension(400,100));
+        final int y = 2;
+        com.google.common.base.Function<List<Coordinates>, Integer> fun = ((list) -> {
+            int sum = list.stream().mapToInt(obj -> obj.getRow() + obj.getY()).sum();
+            return sum+y;
+        });
+        List<Coordinates> coordinatesList = new ArrayList<>(4);
+        for (int i = 1; i <= 4; i++) {
+            Coordinates coordinates = null;
+            switch (i) {
+                case 1: {
+                    coordinates = new Coordinates(1, 1, 3, 3);
+                    coordinatesList.add(coordinates);
+                    layout.setConstraints(head, GridBagLayoutTool.createGridBagConstraints(
+                            coordinates.getX(), coordinates.getY(),
+                            coordinates.getColumn(), coordinates.getRow(),
+                            0,0.05,
+                            new Insets(0, 10, 0, 10)));
+                    break;
+                }
+                case 2: {
+                    coordinates = new Coordinates(1, 8, 3, 2);
+                    coordinatesList.add(coordinates);
+                    layout.setConstraints(body,
+                            GridBagLayoutTool.createGridBagConstraints(fun.apply(coordinatesList) - coordinates.getY(),
+                                    coordinates,
+                                    new Insets(0, 0, 0, 0)));
+                    break;
+                }
+                case 3: {
+                    coordinates = new Coordinates(3, 3, 1, 1);
+                    coordinatesList.add(coordinates);
+                    layout.setConstraints(buttonA,
+                            GridBagLayoutTool.createGridBagConstraints(fun.apply(coordinatesList) - coordinates.getY(),
+                                    coordinates,
+                                    new Insets(10, -100, 10, 0)));
+                    break;
+                }
+                case 4: {
+                    coordinates = new Coordinates(1, 2, 8, 5);
+                    coordinatesList.add(coordinates);
+                    layout.setConstraints(label,
+                            GridBagLayoutTool.createGridBagConstraints(fun.apply(coordinatesList) - coordinates.getY(),
+                                    coordinates,
+                                    new Insets(10, 0, 0, 0)));
+                    break;
+                }
+            }
+        }
+
+//        layout.setConstraints(head, GridBagLayoutTool.createGridBagConstraints(1, 1, 3, 4, new Insets(10, 0, 10, 0)));//y=1+4 = 5
+//        layout.setConstraints(body, GridBagLayoutTool.createGridBagConstraints(1, 5 + 5 + y, 3, 2, new Insets(10, 0, 10, 0)));//y=10+2=12
+//        layout.setConstraints(buttonA, GridBagLayoutTool.createGridBagConstraints(3, 12 + 2 + y, 1, 1, new Insets(0, -150, 0, 0)));//y=14+1=15
+//        layout.setConstraints(label, GridBagLayoutTool.createGridBagConstraints(1, 15 + 2 + y, 10, 5));
 
 
         jPanel.add(head);
         jPanel.add(body);
         jPanel.add(buttonA);
         jPanel.add(label);
-
-        int pad = -210;
-        final int y = 150;
-
-        layout.putConstraint(SpringLayout.EAST, head, pad, SpringLayout.EAST, jPanel);
-        layout.putConstraint(SpringLayout.NORTH, head, y, SpringLayout.NORTH, jPanel);
-
-
-        layout.putConstraint(SpringLayout.EAST, body, pad, SpringLayout.EAST, jPanel);
-        layout.putConstraint(SpringLayout.NORTH, body, y + 90, SpringLayout.NORTH, head);
-
-        layout.putConstraint(SpringLayout.EAST, buttonA, pad - 400, SpringLayout.EAST, jPanel);
-        layout.putConstraint(SpringLayout.NORTH, buttonA, 45, SpringLayout.NORTH, body);
-
-        layout.putConstraint(SpringLayout.EAST, label, pad + 80, SpringLayout.EAST, jPanel);
-        layout.putConstraint(SpringLayout.NORTH, label, 28, SpringLayout.NORTH, buttonA);
 
 
         //-------------------------------------------/-----------------------------------------
@@ -422,7 +461,7 @@ public class SoftwareEngineerPanelTool {
 
         layout.setConstraints(input, GridBagLayoutTool.createGridBagConstraints(1, 5, 10, 4));//y=9
 
-        layout.setConstraints(body, GridBagLayoutTool.createGridBagConstraints(1, 9 + 4 + y, 5, 1,new Insets(1,70,1,70)));//y=15
+        layout.setConstraints(body, GridBagLayoutTool.createGridBagConstraints(1, 9 + 4 + y, 5, 1, new Insets(1, 70, 1, 70)));//y=15
 
         layout.setConstraints(output, GridBagLayoutTool.createGridBagConstraints(1, 15 + 4 + y, 10, 4));
 

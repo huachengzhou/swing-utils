@@ -1,6 +1,8 @@
 package com.swing;
 
 
+import tool.utils.entity.Coordinates;
+
 import java.awt.*;
 
 public class GridBagLayoutTool {
@@ -54,6 +56,16 @@ public class GridBagLayoutTool {
     public static GridBagConstraints createGridBagConstraints(int x, int y, int column, int row) {
         //BOTH 是为了设置如果组件所在的区域比组件本身要大时的显示情况
         return createGridBagConstraints(x, y, column, row, 0, 0);
+    }
+
+    public static GridBagConstraints createGridBagConstraints(int y, Coordinates coordinates) {
+        //BOTH 是为了设置如果组件所在的区域比组件本身要大时的显示情况
+        return createGridBagConstraints(coordinates.getX(), y, coordinates.getColumn(), coordinates.getRow(), 0, 0);
+    }
+
+    public static GridBagConstraints createGridBagConstraints(int y, Coordinates coordinates,Insets insets) {
+        //BOTH 是为了设置如果组件所在的区域比组件本身要大时的显示情况
+        return createGridBagConstraints(coordinates.getX(), y, coordinates.getColumn(), coordinates.getRow(), 0, 0, insets, GridBagConstraints.BOTH, GridBagConstraints.CENTER);
     }
 
     public static GridBagConstraints createGridBagConstraints(int x, int y, int column, int row,Insets insets) {
