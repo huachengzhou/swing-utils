@@ -2,6 +2,7 @@ package com.general;
 
 import com.alee.laf.WebLookAndFeel;
 import com.common.utils.RunAbs;
+import com.formdev.flatlaf.FlatLightLaf;
 import com.general.menu.JMenuBarTool;
 import com.general.panel.PanelTool;
 import org.slf4j.Logger;
@@ -31,6 +32,12 @@ public class SwingBootstrap {
 
     private static void run() throws Exception {
         WebLookAndFeel.install();
+        try {
+//            FlatLightLaf.setup();//idea theme
+//            UIManager.setLookAndFeel( new FlatLightLaf() );
+        } catch( Exception ex ) {
+            System.err.println( "Failed to initialize LaF" );
+        }
 //        UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
 //        UIManager.getLookAndFeelDefaults().put("defaultFont", new Font("Microsoft Yahei", Font.PLAIN, 13));
         //创建窗口
