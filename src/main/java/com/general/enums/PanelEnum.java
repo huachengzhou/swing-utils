@@ -19,6 +19,7 @@ public enum PanelEnum {
     Software_Engineer_F("Software_Engineer_F", "复杂情况统计局数据抓取"),
     Software_Engineer_Tool("Software_Engineer_Tool", "字符串转换"),
     Software_Engineer_hugo("Software_Engineer_hugo", "hugo静态网站生成"),
+    Software_structure_database_syn_mysql("Software_structure_database_syn_mysql", "mysql结构同步"),
 
     ;
     private String key;

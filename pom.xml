@@ -496,7 +496,7 @@
 
         <!-- aspose-words -->
         <dependency>
-            <groupId>com.aspose</groupId>
+            <groupId>com.zhou.aspose-words</groupId>
             <artifactId>aspose-words</artifactId>
             <version>16.4.0</version>
         </dependency>

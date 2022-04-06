@@ -10,7 +10,7 @@ public class SpireCommonPDFUtils {
 
     public static String pdfToWordConversion(String pdfFile) throws Exception {
         com.spire.pdf.PdfDocument  pdf = new com.spire.pdf.PdfDocument(pdfFile);
-        String fileName = FilenameUtils.getFullPath(pdfFile) + FilenameUtils.getBaseName(pdfFile) + ".docx";
+        String fileName = FilenameUtils.getFullPath(pdfFile) + FilenameUtils.getBaseName(pdfFile) + ".doc";
         File file = new File(fileName);
         if (!file.exists()) {
             file.createNewFile();

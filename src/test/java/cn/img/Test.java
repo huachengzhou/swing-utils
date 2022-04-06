@@ -2,36 +2,26 @@ package cn.img;
 
 import com.common.utils.FileImageCreator;
 import com.common.utils.SimpleDrawer;
+import com.spire.pdf.PdfDocument;
+import com.spire.pdf.security.PdfEncryptionKeySize;
+import com.spire.pdf.security.PdfPermissionsFlags;
 
 import java.io.IOException;
 
 public class Test {
 
-    public static void main(String[] args) {
-        try {
-            StringBuffer sb = new StringBuffer();
-            sb.append("中华人民共和国\n");
-            sb.append("中华人民共和国\n");
+    public static void main(String[] args) throws Exception{
+        //创建PdfDocument实例
+        PdfDocument doc = new PdfDocument();
+        //加载PDF文件
+        doc.loadFromFile("D:\\data\\电力行业内部控制操作指南.pdf", "test");
 
-            FileImageCreator creator = new FileImageCreator(new SimpleDrawer(), "E:\\lib\\img.jpeg");
-            creator.setWidth(150); //图片宽度
-            creator.setHeight(100); //图片高度
-            creator.setLineNum(20); //干扰线条数
-            creator.setFontSize(18); //字体大小
-            creator.setFontName("黑体");
+        //对文件进行解密
+        doc.getSecurity().encrypt("", "", PdfPermissionsFlags.getDefaultPermissions(), PdfEncryptionKeySize.Key_256_Bit, "test");
 
-            //文字旋转
-            creator.setRadian(30.0); //旋转弧度
-            creator.setRotateX(creator.getWidth() / 5);
-            creator.setRotateY(creator.getHeight() * 5 / 10);
-
-            creator.generateImage(sb.toString());
-
-            System.out.println("ok");
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+        //保存文件
+        doc.saveToFile("D:\\data\\电力行业内部控制操作指南X.pdf");
+        doc.close();
     }
 
 }

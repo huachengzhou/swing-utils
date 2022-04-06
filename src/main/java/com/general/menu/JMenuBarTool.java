@@ -150,7 +150,7 @@ public class JMenuBarTool {
 
     public static JMenu createSoftwareEngineer(JPanel jPanel, CardLayout cardLayout) {
         JMenu menu = new JMenu("软件工程师");
-        List<PanelEnum> panelEnumList = Arrays.asList(PanelEnum.Software_Engineer_Tool,PanelEnum.Software_Engineer_A, PanelEnum.Software_Engineer_B, PanelEnum.Software_Engineer_hugo,PanelEnum.Software_Engineer_C, PanelEnum.Software_Engineer_D, PanelEnum.Software_Engineer_E, PanelEnum.Software_Engineer_F);
+        List<PanelEnum> panelEnumList = Arrays.asList(PanelEnum.Software_structure_database_syn_mysql,PanelEnum.Software_Engineer_Tool,PanelEnum.Software_Engineer_A, PanelEnum.Software_Engineer_B, PanelEnum.Software_Engineer_hugo,PanelEnum.Software_Engineer_C, PanelEnum.Software_Engineer_D, PanelEnum.Software_Engineer_E, PanelEnum.Software_Engineer_F);
         JMenuItem item = null;
         for (PanelEnum panelEnum : panelEnumList) {
             item = new JMenuItem(panelEnum.getName());
