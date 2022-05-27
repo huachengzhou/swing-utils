@@ -372,7 +372,7 @@ public class SoftwareEngineerPanelTool {
             try {
                 AsposeUtils.appendHtml(value, path);
             } catch (Exception e) {
-                SpireCommonWordUtils.appendHtmlFileToWord(value, path);
+//                SpireCommonWordUtils.appendHtmlFileToWord(value, path);
             }
         }
         if ("pdf".equals(suffix)) {
@@ -381,9 +381,9 @@ public class SoftwareEngineerPanelTool {
             try {
                 AsposeUtils.appendHtml(value, dir2);
             } catch (Exception e) {
-                SpireCommonWordUtils.appendHtmlFileToWord(value, dir2);
+//                SpireCommonWordUtils.appendHtmlFileToWord(value, dir2);
             }
-            SpireCommonWordUtils.wordFileToPDF(path, dir2);
+//            SpireCommonWordUtils.wordFileToPDF(path, dir2);
         }
         String toString = ele.toString();
         if ("xls".equals(suffix)) {

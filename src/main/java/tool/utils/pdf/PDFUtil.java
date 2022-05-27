@@ -139,7 +139,8 @@ public class PDFUtil {
     }
 
     public static String pdfToWordConversion2(String pdfFile) throws Exception {
-        return SpireCommonPDFUtils.pdfToWordConversion(pdfFile) ;
+//        return SpireCommonPDFUtils.pdfToWordConversion(pdfFile) ;
+        return null ;
     }
 
     /**

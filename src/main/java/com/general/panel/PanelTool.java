@@ -332,7 +332,7 @@ public class PanelTool {
                 }
                 try {
                     String targetPath = FilenameUtils.getFullPath(jTextField.getText()) + FilenameUtils.getBaseName(jTextField.getText()) + ".pdf";
-                    SpireCommonWordUtils.wordFileToPDF(targetPath, jTextField.getText());
+//                    SpireCommonWordUtils.wordFileToPDF(targetPath, jTextField.getText());
                     JOptionPane.showMessageDialog(jPanel, FilenameUtils.getName(jTextField.getText()) + " 转换成功!");
                     jTextField.setText("文件位置: " + targetPath);
                 } catch (Exception ex) {
@@ -633,7 +633,7 @@ public class PanelTool {
                                 AsposeUtils.appendHtml(html, dir);
                             } catch (Exception e1) {
                                 System.out.println(e1.getMessage());
-                                SpireCommonWordUtils.appendHtmlFileToWord(html, dir);
+//                                SpireCommonWordUtils.appendHtmlFileToWord(html, dir);
                             }
                             progressBar.setValue(100);
                             JOptionPane.showMessageDialog(jPanel, "成功!");
